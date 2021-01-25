@@ -1,0 +1,43 @@
+For each country
+  From currnet country
+  check path to next country
+    if no path there will be no path to all next countries
+    else conitne checking
+  check path to previous country
+    if no path there will be no path to all previous countries
+    else continue checking
+  
+  int t = 5
+  int N = 2;
+  bool in[N],out[N];
+  bool res[N][N];
+
+  for(int i=0; i<N;i++){
+    int current_country = i;
+    res[current_country][current_country] = true;
+    next_path(current_country);
+    bool path = true;
+    for(j = current_country+1; j<N ; j++){
+      if(path){
+        if(!in[j])
+          path = false;
+        res[current_country][j] = path;
+        if(!out[j])
+          path = false;
+      }
+      else
+        res[current_country][j] = false;
+    }
+    path = true;
+    for(j = current_country-1; j<N ; j--){
+      if(path){
+        if(!in[j])
+          path = false;
+        res[current_country][j] = path;
+        if(!out[j])
+          path = false;
+      }
+      else
+        res[current_country][j] = false;
+    }
+  }
